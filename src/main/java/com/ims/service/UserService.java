@@ -37,7 +37,7 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         user.setUsername(userDetails.getUsername());
         user.setEmail(userDetails.getEmail());
-        user.setPassword(userDetails.getPassword()); // You should hash the password
+        user.setPassword(userDetails.getPassword());
         user.setRole(userDetails.getRole());
         return userRepository.save(user);
     }
