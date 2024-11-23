@@ -2,13 +2,17 @@ package com.ims.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 @Table(name = "audit_log")
 public class AuditLog {
     @Id
@@ -17,7 +21,7 @@ public class AuditLog {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private long userId;
+    private User user;
 
     @Column(nullable = false)
     private String action;
