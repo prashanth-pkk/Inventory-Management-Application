@@ -25,9 +25,9 @@ public class InventoryController {
     }
 
     @PutMapping("/{productId}")
-    public ResponseEntity<Inventory> updateInventory(@PathVariable Long productId, @RequestParam Integer quantity) {
-        Inventory inventory = inventoryService.updateInventory(productId, quantity);
-        return ResponseEntity.ok(inventory);
+    public String updateInventory(@PathVariable Long productId, @RequestParam Integer quantity) {
+        inventoryService.updateInventory(productId, quantity);
+        return "Inventory update process initiated for product " + productId;
     }
 
     @GetMapping("/{productId}/low-stock")
