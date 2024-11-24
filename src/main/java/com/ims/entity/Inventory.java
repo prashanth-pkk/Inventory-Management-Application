@@ -1,10 +1,9 @@
 package com.ims.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "inventory")
 @Getter
 @Setter
+@Data
 public class Inventory {
 
     @Id
@@ -21,9 +21,11 @@ public class Inventory {
     private Long id;
 
     @ManyToOne
+    @NotNull(message = "Product is required")
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+    @Min(value = 1, message = "Quantity must be at least 1")
     @Column(nullable = false)
     private Integer quantity;
 

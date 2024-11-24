@@ -1,6 +1,7 @@
 package com.ims.controller;
 
 import com.ims.entity.Inventory;
+import com.ims.exception.ProductNotFoundException;
 import com.ims.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class InventoryController {
     }
 
     @PostMapping("/{productId}")
-    public ResponseEntity<Inventory> addInventory(@PathVariable Long productId, @RequestParam Integer quantity) {
+    public ResponseEntity<Inventory> addInventory(@PathVariable Long productId, @RequestParam Integer quantity) throws ProductNotFoundException {
         Inventory inventory = inventoryService.addInventory(productId, quantity);
         return ResponseEntity.ok(inventory);
     }

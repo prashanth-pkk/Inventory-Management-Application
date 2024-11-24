@@ -2,6 +2,7 @@ package com.ims.controller;
 
 import com.ims.entity.Product;
 import com.ims.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
         Product prod = productService.createProduct(product);
         return ResponseEntity.ok(prod);
     }

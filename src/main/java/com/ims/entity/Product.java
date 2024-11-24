@@ -1,10 +1,10 @@
 package com.ims.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "product")
+@Data
 public class Product {
 
     @Id
@@ -21,10 +22,13 @@ public class Product {
     private Long id;
 
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "Product name can't be empty")
     private String name;
 
     private String description;
 
+    @NotNull(message = "Price is required")
+    @DecimalMin(value = "0.0",inclusive = false, message = "The price must be greater than 0")
     @Column(nullable = false)
     private Double price;
 
