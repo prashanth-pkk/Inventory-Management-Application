@@ -23,7 +23,7 @@ public class RetryScheduler {
         this.inventoryService = inventoryService;
     }
 
-    @Scheduled(fixedRate = 600000)
+    @Scheduled(cron = "0 0 0 * * ?")
     @Transactional
     public void retryFailedOperations() {
         List<FailedOperation> failedOperations = failedOperationRepository.findAll();

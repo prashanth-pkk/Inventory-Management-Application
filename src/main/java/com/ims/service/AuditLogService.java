@@ -29,4 +29,12 @@ public class AuditLogService {
 
         return auditLogRepository.save(auditLog);
     }
+
+    public void logEvent(String eventType, String action) {
+        AuditLog log = new AuditLog();
+        log.setEventType(eventType);
+        log.setAction(action);
+        log.setTimeStamp(LocalDateTime.now());
+        auditLogRepository.save(log);
+    }
 }

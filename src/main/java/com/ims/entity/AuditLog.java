@@ -27,5 +27,8 @@ public class AuditLog {
     private String action;
 
     @Column(nullable = false)
+    private String eventType;
+
+    @Column(nullable = false)
     private LocalDateTime timeStamp;
 }
